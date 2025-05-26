@@ -22,6 +22,8 @@ import com.booksWagon.utils.ExcelUtility;
 public class PersonalSettings {
 	WebDriver driver;
 	ExcelUtility objExcel = new ExcelUtility();
+//	change excel path
+	String excelPath = "C:\\Users\\vadlamudi.tejaswini\\eclipse-workspace\\BooksWagon\\src\\test\\resources\\testData\\personalSettingsData.xlsx";
 	
 //	variables
 	By btnMyAccountDropDown = By.xpath("//li[@class='list-inline-item text-center loginpopupwrapper']");
@@ -112,7 +114,6 @@ public class PersonalSettings {
 	}
 
     public ArrayList<String> returnColumn(int columnNumber) throws IOException {
-		String excelPath = "C:\\Users\\susil.k\\eclipse-workspace\\BooksWagonProject\\src\\test\\resources\\testData\\personalSettingsData.xlsx";
 		int rowCount =  objExcel.getRowCount(excelPath,"personalSettingsSheet");
 		ArrayList<String>column = new ArrayList();
 		for(int row=1;row<rowCount;row++) {
@@ -123,7 +124,6 @@ public class PersonalSettings {
     }
 	
 	public void writeActualTestCaseOnExcel(ArrayList<String> actualTestCase) throws IOException {
-		String excelPath = "C:\\Users\\susil.k\\eclipse-workspace\\BooksWagonProject\\src\\test\\resources\\testData\\personalSettingsData.xlsx";
 		int rowCount =  objExcel.getRowCount(excelPath,"personalSettingsSheet");
 		for(int row=1;row<rowCount;row++) {
 			objExcel.setCellData(excelPath,"personalSettingsSheet",row,12,actualTestCase.get(row-1));
@@ -133,7 +133,6 @@ public class PersonalSettings {
 //	public ArrayList<String> fillDetailsExcel() throws IOException, InterruptedException {
 		public void fillDetailsExcel() throws IOException, InterruptedException {
 		ArrayList<String> testCase = new ArrayList();
-		String excelPath = "C:\\Users\\susil.k\\eclipse-workspace\\BooksWagonProject\\src\\test\\resources\\testData\\personalSettingsData.xlsx";
 		int rowCount =  objExcel.getRowCount(excelPath,"personalSettingsSheet");
 		
 		String actualEmailBeforeClearing = null;
@@ -255,6 +254,9 @@ public class PersonalSettings {
 		driver.findElement(btnSignin).click();
     }
 
+    public void tearDown() {
+    	driver.manage().deleteAllCookies();
+    }
 
     
 }
